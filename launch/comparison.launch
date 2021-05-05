@@ -1,14 +1,16 @@
 <?xml version="1.0"?>
 <launch>
+	<!-- static transformation between scan frames and maps -->
+	<node pkg="tf2_ros" type="static_transform_publisher" name="link1_broadcaster" args="0 0 0 -0.693 0 0 map laser_rplidar" />
+	<node pkg="tf2_ros" type="static_transform_publisher" name="link2_broadcaster" args="0 0 0 -2.822 0 0 map laser_ydlidar" />
+	
+	<!-- RViz -->
+	<node name="rviz" pkg="rviz" type="rviz" args="-d $(find low-cost-lidar-comparison)/config/config.rviz" required="false"/>
+	
 	<!-- rosbag play -->
 	<arg name="path" default="$(find low-cost-lidar-comparison)/bag_files" />
 	<arg name="rplidar" default="rplidar_1.bag" />
 	<arg name="ydlidar" default="ydlidar_1.bag" />
-	<node pkg="rosbag" type="play" name="player" output="screen" args="$(arg path)/$(arg rplidar) $(arg path)/$(arg ydlidar) --clock"/>
-	
-	<!-- static transformation between scan frames and maps -->
-	<node pkg="tf" type="static_transform_publisher" name="link1_broadcaster" args="0 0 0 0 0 0 map laser_rplidar 100" />
-	
-	<!-- RViz -->
-	<node name="rviz" pkg="rviz" type="rviz" required="false"/>
+	<node pkg="rosbag" type="play" name="player_rplidar" output="screen" args=" $(arg path)/$(arg rplidar)" />
+	<node pkg="rosbag" type="play" name="player_ydlidar" output="screen" args=" $(arg path)/$(arg ydlidar) /tf:=/tf_dev_null" />
 </launch>
