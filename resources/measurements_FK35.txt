@@ -1,0 +1,18 @@
+(Lasermessgerät - Lasermessgerät - Meterstab)
+1. Messstrecke (unter den Tischen) Abstand zur Wand ca. 0,15 m ( Wand - Wand)
+6,155 - 6,155 - 6,157 m
+
+2. Messstrecke (unter den Tischen) Abstand zur Wand ca. 0,55 m (Wand - Wand)
+6,150 - 6,150 - 6,155 m
+
+3. Messstrecke (vor den Tischen) Abstand zur Wand ca. 1,30 m (Wand - Wand)
+6,146 - 6,147 - 6,150 m
+
+4. Messstrecke Abstand zur Wand ca. 1,50 m (Wand - Schrank)
+5,709 - 5,709 - 5,714 m
+
+5. Messstrecke Abstand zur Wand ca. 2,30 m (Wand - Schrank)
+5,709 - 5,708 - 5,710 m
+
+6. Messstrecke (quer) Abstand zur Wand ca. 0,60 m (Sideboard - Wand)
+4,777 - 4,777 - 4,775 m
