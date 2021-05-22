@@ -1,5 +1,5 @@
 # low-cost-lidar-comparison
-Comparison between the two low-cost 2D 360° lidar sensors RPLIDAR A2 and YDLIDAR TG15 (ROS 1 bag files)
+Comparison between the two low-cost 2D 360° lidar sensors [RPLIDAR A2](https://www.slamtec.com/en/Lidar/A2) and [YDLIDAR TG15](https://www.ydlidar.com/products/view/16.html) (ROS 1 bag files)
 
 ## Accuracy Comparison
 ### Resolution
