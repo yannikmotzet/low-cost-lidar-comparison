@@ -11,13 +11,18 @@ Comparison between the two low-cost 2D 360° lidar sensors [RPLIDAR A2](https://
 * YDLIDAR: 0.0076 m
 
 ### Distance Error
+[detailed information](resources/distance_comparison.md)
 * RPLIDAR: 0.0455 m
 * YDLIDAR: -0.0009 m
 
+
 ## Visualization
 ### ROS Rviz
+``` roslaunch low-cost-lidar-comparison comparison.launch ```
 ![result_rviz](resources/lidar_comparison_rviz.png)
 ### Bokeh
+use time slider to move in time,
+by selecting two points the browser console outputs the distance between them <br>
 ![result_bokeh](resources/lidar_comparison_bokeh.png)
 
 ## Measurement setup

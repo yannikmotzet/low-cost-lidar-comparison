@@ -145,7 +145,7 @@ TOOLTIPS = [
     ("angle", "@angle"),
 ]
 
-p = figure(plot_width=800, plot_height=800, x_range=(-4, 3.5), y_range=(-3, 3), tooltips=TOOLTIPS)
+p = figure(plot_width=900, plot_height=720, x_range=(-4, 3.5), y_range=(-3, 3), tooltips=TOOLTIPS)
 
 slider_time = Slider(start=0, end=119, value=0, step=0.05, title="time [sec]",)
 
@@ -281,19 +281,21 @@ p.circle('x', 'y', source=ydlidar_points_bokeh_initial, color=ydlidar_color, leg
 show(layout)
 
 
-
 # calculate distances
 #####################
-def measure_distance_between_lines(poly_rp, poly_yd, line_index, position, true_distance):
+
+# measure distance between lines and return difference to reference distance
+def offset_lidar_reference_measurement(poly_rp, poly_yd, line_index, position, true_distance):
     distance_rp = abs(np.polyval(poly_rp[line_index[0]], [position]) - np.polyval(poly_rp[line_index[1]], [position]))
     distance_yd = abs(np.polyval(poly_yd[line_index[0]], [position]) - np.polyval(poly_yd[line_index[1]], [position]))
 
     error_rp = distance_rp - true_distance
     error_yd = distance_yd - true_distance
-    # print(distance_rp)
-    # print(error_rp)
-    # print(distance_yd)
-    # print(error_yd)
+    
+    # print(distance_rp[0])
+    # print(error_rp[0])
+    # print(distance_yd[0])
+    # print(error_yd[0])
 
     return error_rp[0], error_yd[0]
 
@@ -332,14 +334,15 @@ line_index.append([4, 7])
 position.append(2.118)
 true_value.append(4.77)
 
-total_error_rp = 0
-total_error_yd = 0
+total_error_rp = []
+total_error_yd = []
 for i in range(len(line_index)):
-    error_rp, error_yd = measure_distance_between_lines(rp_line_all, yd_line_all, line_index[i], position[i], true_value[i])
-    total_error_rp += error_rp
-    total_error_yd += error_yd
-total_error_rp = total_error_rp / len(line_index)
-total_error_yd = total_error_yd / len(line_index)
+    error_rp, error_yd = offset_lidar_reference_measurement(rp_line_all, yd_line_all, line_index[i], position[i], true_value[i])
+    total_error_rp.append(error_rp)
+    total_error_yd.append(error_yd)
 
-print("error RPLIDAR: " + str(total_error_rp) + " m")
-print("error YDLIDAR: " + str(total_error_yd) + " m")
+print("error RPLIDAR: " + str(np.mean(total_error_rp)) + " m")
+print("error YDLIDAR: " + str(np.mean(total_error_yd)) + " m")
+
+# print("variance RPLIDAR: " + str(np.var(total_error_rp)) + " m")
+# print("variance YDLIDAR: " + str(np.var(total_error_yd)) + " m")
